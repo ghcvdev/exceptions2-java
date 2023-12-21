@@ -48,15 +48,19 @@ public class Account {
 	}
 
 	public void withdraw(Double amount) {
-		if (amount > withdrawLimit) {
+		withdrawValidation(amount);
+		balance -= amount;
+	}
+	
+	public void withdrawValidation(Double amount) {
+		if (amount > getWithdrawLimit()) {
 			throw new DomainException("The amount exceeds withdraw limit");
 		}
 
-		if (amount > balance) {
+		if (amount > getBalance()) {
 			throw new DomainException("Not enough balance");
 		}
-		System.out.println("Cheguei aqui?");
-		balance -= amount;
+		
 	}
 
 }
